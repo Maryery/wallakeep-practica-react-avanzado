@@ -1,9 +1,33 @@
+//API
+import {NodepopAPI } from  '../services';
+// Actions
 import * as TYPES from './types';
 
 export const setSession = session => ({
     type: TYPES.SET_SESSION,
     session,
 });
+
+export const editSession = session => ({
+    type: TYPES.EDIT_SESSION,
+    session,
+})
+
+export const logout = () => ({
+    type: TYPES.LOGOUT_SESSION,
+    session,
+});
+
+export const fetchAdverts = () => {
+    return async function(dispatch, getState) {
+        dispatch(FetchAdvertsRequest());
+        try {
+            const adverts = await NodepopAPI.getAdverts();
+        } catch (error) {
+            dispatch(fetchAdvertsFailure(error.message))
+        }
+    }
+};
 
 export const FetchAdvertsRequest = () => ({
     type: TYPES.FETCH_ADVERTS_REQUEST
