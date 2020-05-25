@@ -1,6 +1,7 @@
 /* NPM modules */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { SnackbarProvider } from 'notistack';
 /* Own modules */
 import App from './components/App/App';
@@ -15,10 +16,11 @@ const store = configureStore();
 
 console.log(store);
 
-
 // Forzar el modo producción
-const app = <SnackbarProvider maxSnack={2}>
-                <App/>
-            </SnackbarProvider>
+const app = <Provider store={store}>
+                <SnackbarProvider maxSnack={2}>
+                    <App/>
+                </SnackbarProvider>
+            </Provider>
 
 ReactDOM.render(app, document.getElementById('root'));

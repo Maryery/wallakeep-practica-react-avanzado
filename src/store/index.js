@@ -14,5 +14,3 @@ export function configureStore(preloadedState) {
     const store = createStore(reducer, preloadedState, composeWithDevTools())
     return store    
 };
-
-
