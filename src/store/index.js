@@ -1,6 +1,9 @@
 import { createStore, combineReducers } from 'redux';
+
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { session, adverts } from './reducers';
+
+import {session, adverts}  from './reducers';
+
 
 const reducer = combineReducers({
     session,
@@ -8,3 +11,4 @@ const reducer = combineReducers({
 });
 
 export const store = createStore(reducer, composeWithDevTools());
+
