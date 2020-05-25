@@ -9,7 +9,9 @@ import App from './components/App/App';
 /* CSS */
 import './index.css';
 
-import { store } from './store';
+import { configureStore } from './store';
+
+const store = configureStore();
 
 console.log(store);
 

@@ -10,5 +10,9 @@ const reducer = combineReducers({
     adverts,
 });
 
-export const store = createStore(reducer, composeWithDevTools());
+export function configureStore(preloadedState) {
+    const store = createStore(reducer, preloadedState, composeWithDevTools())
+    return store    
+};
+
 
