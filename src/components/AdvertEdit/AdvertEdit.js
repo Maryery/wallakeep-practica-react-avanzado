@@ -97,6 +97,7 @@ class AdvertEdit extends Component {
     if (error) return <Redirect to="/notfound" />;
     return (
       <Layout
+        logout={this.props.logout}
         sectionTitle={editMode ? 'Editar anuncio' : 'Crear nuevo anuncio'}
       >
         <form

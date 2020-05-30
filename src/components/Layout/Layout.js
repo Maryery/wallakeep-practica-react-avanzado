@@ -8,11 +8,11 @@ import Footer from '../Footer/Footer';
 /* Assets */
 /* CSS */
 
-export default function Layout({ containerClassName, children, sectionTitle }) {
+export default function Layout({ containerClassName, children, sectionTitle, logout }) {
   return (
     <React.Fragment>
       <header>
-        <NavBar />
+        <NavBar logout={logout}/>
       </header>
       <Container className={containerClassName}>
         <main className="Main__Section">

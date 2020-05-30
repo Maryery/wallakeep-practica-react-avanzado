@@ -41,7 +41,7 @@ class NavBar extends Component {
    * Render del componente
    */
   render() {
-    const { session, clearSession } = this.props;
+    const { session, logout } = this.props;
     return (
       <AppBar title="Wallakeep" position="static" className="NavBar">
         <Container>
@@ -105,7 +105,7 @@ class NavBar extends Component {
                   </MenuItem>
                   <MenuItem
                     className="NavBar__MenuItem"
-                    onClick={() => clearSession()}
+                    onClick={() => logout()}
                     to="/register"
                     component={Link}
                   >

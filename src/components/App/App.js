@@ -16,9 +16,6 @@ import Session from '../../models/Session';
 import VisibleHome from '../../containers/VisibleHome';
 
 
-/* Assets */
-/* CSS */
-
 /**
  * Main App
  */
@@ -34,26 +31,14 @@ export default class App extends Component {
       session: LocalStorage.readLocalStorage() || new Session(),
     };
   }
-
-  setSession = (session, isRemember, cb) => {
-    if (isRemember) {
-      LocalStorage.saveLocalStorage(session);
-    }
-    this.setState({ session }, cb);
-  };
-
-  clearSession = cb => {
-    LocalStorage.clearLocalStorage();
-    this.setState({ session: new Session() }, cb);
-  };
-
+  
   /**
    * Render
    */
   render() {
     const userContextValue = {
-      ...this.state,
-      setSession: this.setSession,
+      ...this.props,
+      setSession: this.props.login,
       clearSession: this.clearSession,
     };
     return (
@@ -61,7 +46,7 @@ export default class App extends Component {
         <UserProvider value={userContextValue}>
           <Router>
             <Switch>
-              <Route path="/register" exact render={() => <Register {...this.props}/>} />
+              <Route path="/register" exact render={(props) => <Register session= {this.props.session} login={this.props.login} {...props}/>} />
               <PrivateRoute path="/profile" exact component={Profile} />
               <PrivateRoute
                 path="/advert/create"
@@ -74,7 +59,7 @@ export default class App extends Component {
                 component={AdvertEdit}
               />
               <PrivateRoute path="/advert/:id" exact component={AdvertDetail} />
-              <PrivateRoute path="/" exact component={VisibleHome} />
+              <PrivateRoute path="/" exact render={(props) => <VisibleHome logout= {this.props.logout} {...props}/>} />
               <PrivateRoute component={Error404} />
             </Switch>
           </Router>

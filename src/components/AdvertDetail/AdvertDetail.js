@@ -60,7 +60,7 @@ class AdvertDetail extends Component {
     const { loading, error, advert } = this.state;
     if (error) return <Redirect to="/notfound" />;
     return (
-      <Layout sectionTitle="Detalle del anuncio">
+      <Layout logout={this.props.logout} sectionTitle="Detalle del anuncio">
         {!loading && (
           <article className="AdvertDetail">
             <div className="AdvertDetail__Main">

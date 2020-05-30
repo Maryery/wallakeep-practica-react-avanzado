@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import App from '../../components/App/App';
-import { setSession } from '../../store/actions';
+import { setSession, logout } from '../../store/actions';
 import LocalStorage from '../../utils/Storage';
 
 
 const mapStateToProps = state => ({
-  session2: state.session,
+  session: state.session,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,6 +15,10 @@ const mapDispatchToProps = dispatch => ({
     }
     console.log(session)
     dispatch(setSession(session));
+    dispatch(cb);
+  },
+  logout: () => {
+    dispatch(logout);
   } 
 });
 

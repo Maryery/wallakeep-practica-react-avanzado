@@ -47,7 +47,7 @@ class Home extends Component {
       this.state.currentPage * session.maxAdverts + session.maxAdverts;
     // Render
     return (
-      <Layout containerClassName="Container__Fill">
+      <Layout logout={this.props.logout} containerClassName="Container__Fill">
         {this.state.loading && (
           <div className="Home__Loading">
             <img src={imageSpinner} className="Home__Spinner" alt="spinner" />
