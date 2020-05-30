@@ -4,22 +4,19 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { SnackbarProvider } from 'notistack';
 /* Own modules */
-import App from './components/App/App';
 /* Material UI */
 /* Assets */
 /* CSS */
 import './index.css';
 
 import { configureStore } from './store';
+import VisibleApp from './containers/VisibleApp/index';
 
 const store = configureStore();
 
-console.log(store);
-
-// Forzar el modo producción
 const app = <Provider store={store}>
                 <SnackbarProvider maxSnack={2}>
-                    <App/>
+                    <VisibleApp/>
                 </SnackbarProvider>
             </Provider>
 

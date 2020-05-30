@@ -12,8 +12,10 @@ import LocalStorage from '../../utils/Storage';
 import Error404 from '../Error404/Error404';
 import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
-import Home from '../Home/Home';
 import Session from '../../models/Session';
+import VisibleHome from '../../containers/VisibleHome';
+
+
 /* Assets */
 /* CSS */
 
@@ -59,7 +61,7 @@ export default class App extends Component {
         <UserProvider value={userContextValue}>
           <Router>
             <Switch>
-              <Route path="/register" exact component={Register} />
+              <Route path="/register" exact render={() => <Register {...this.props}/>} />
               <PrivateRoute path="/profile" exact component={Profile} />
               <PrivateRoute
                 path="/advert/create"
@@ -72,7 +74,7 @@ export default class App extends Component {
                 component={AdvertEdit}
               />
               <PrivateRoute path="/advert/:id" exact component={AdvertDetail} />
-              <PrivateRoute path="/" exact component={Home} />
+              <PrivateRoute path="/" exact component={VisibleHome} />
               <PrivateRoute component={Error404} />
             </Switch>
           </Router>

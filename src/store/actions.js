@@ -1,19 +1,48 @@
-//API
-import NodepopAPI from  '../services/NodepopAPI';
-// Actions
 import * as TYPES from './types';
 
-export const fetchAdverts = () => {
+import NodepopAPI from  '../services/NodepopAPI';
+
+
+export const fetchAdvertsRequest = () => ({
+    type: TYPES.FETCH_ADVERTS_REQUEST
+});
+
+export const fetchAdvertsFailure = error => ({
+    type: TYPES.FETCH_ADVERTS_FAILURE,
+    error,
+});
+
+export const fetchAdvertsSuccess = adverts => ({
+    type: TYPES.FETCH_ADVERTS_SUCCESS,
+    adverts,
+});
+
+export const fetchAdverts = (apiUrl) => {
     return async function(dispatch, getState) {
         dispatch(fetchAdvertsRequest());
         try {
-            const adverts = await NodepopAPI.getAdverts();
+        
+            const adverts = await NodepopAPI(apiUrl).getAdverts();
             dispatch(fetchAdvertsSuccess(adverts));
         } catch (error) {
             dispatch(fetchAdvertsFailure(error.message))
         }
     }
 };
+
+export const editAdvertRequest = () => ({
+    type: TYPES.EDIT_ADVERT_REQUEST,
+});
+
+export const editAdvertFailure = error => ({
+    type: TYPES.EDIT_ADVERT_FAILURE,
+    error,
+});
+
+export const editAdvertSuccess = advert => ({
+    type: TYPES.EDIT_ADVERT_SUCCESS,
+    advert,
+});
 
 export const editAdvert = (advert) => {   
     return async function(dispatch, getState) {
@@ -54,20 +83,6 @@ export const logout = () => ({
     type: TYPES.LOGOUT,
 });
 
-const fetchAdvertsRequest = () => ({
-    type: TYPES.FETCH_ADVERTS_REQUEST
-});
-
-const fetchAdvertsFailure = error => ({
-    type: TYPES.FETCH_ADVERTS_FAILURE,
-    error,
-});
-
-const fetchAdvertsSuccess = adverts => ({
-    type: TYPES.FETCH_ADVERTS_SUCCESS,
-    adverts,
-});
-
 const createAdvertRequest = advert => ({
     type: TYPES.CREATE_ADVERT_REQUEST,
     advert,
@@ -80,19 +95,5 @@ const createAdvertFailure = error => ({
 
 export const createAdvertSuccess = advert => ({
     type: TYPES.CREATE_ADVERT_SUCCESS,
-    advert,
-});
-
-const editAdvertRequest = () => ({
-    type: TYPES.EDIT_ADVERT_REQUEST,
-});
-
-const editAdvertFailure = error => ({
-    type: TYPES.EDIT_ADVERT_FAILURE,
-    error,
-});
-
-const editAdvertSuccess = advert => ({
-    type: TYPES.EDIT_ADVERT_SUCCESS,
     advert,
 });

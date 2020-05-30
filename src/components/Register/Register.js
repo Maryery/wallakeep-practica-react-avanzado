@@ -28,11 +28,11 @@ class Register extends Component {
    */
   constructor(props) {
     super(props);
-    const { session } = props;
+    const { session2 } = props;
     this.state = {
       error: false,
-      name: session.name,
-      surname: session.surname,
+      name: session2.name,
+      surname: session2.surname,
       isRemember: false,
     };
   }
@@ -122,7 +122,7 @@ class Register extends Component {
    * Handle onSubmit event
    */
   handleSubmit = async event => {
-    const { session, setSession, enqueueSnackbar, history } = this.props;
+    const { session, setSession, enqueueSnackbar, history, login } = this.props;
     const { name, surname, isRemember } = this.state;
     event.preventDefault();
 
@@ -140,7 +140,10 @@ class Register extends Component {
       session.apiUrl,
       session.maxAdverts,
     );
-    setSession(newSession, isRemember, () => history.push('/'));
+    console.log(newSession)
+    login(newSession, isRemember, () => history.push('/'));
+    this.props.history.push('/');
+    //setSession(newSession, isRemember, () => history.push('/'));
   };
 
   /**

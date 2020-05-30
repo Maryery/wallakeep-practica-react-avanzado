@@ -54,7 +54,7 @@ class Home extends Component {
             <h2 className="Home__Subtitle">Fetching data from API</h2>
           </div>
         )}
-        {!this.state.loading && this.state.adverts && (
+        {!this.state.loading && this.props.adverts && (
           <div className="Home__Results">
             <SearchPanel
               handleSearch={this.handleSearch}
@@ -66,8 +66,8 @@ class Home extends Component {
               handleMovePaginator={this.handleMovePaginator}
             />
             <section className="Home__Grid">
-              {this.state.adverts.length > 0 &&
-                this.state.adverts
+              {this.props.adverts.length > 0 &&
+                this.props.adverts
                   .slice(minAdvert, maxAdvert)
                   .map((advert, index) => (
                     <AdvertCard
@@ -82,7 +82,7 @@ class Home extends Component {
                       createdAt={advert.createdAt}
                     />
                   ))}
-              {this.state.adverts.length === 0 && (
+              {this.props.adverts.length === 0 && (
                 <h2 className="Home__Subtitle">
                   No hay anuncios que cumplan con los criterios de búsqueda
                 </h2>
@@ -118,12 +118,19 @@ class Home extends Component {
    * Component did mount
    */
   componentDidMount() {
+    
     const { session } = this.props;
+    this.props.getAdverts(session.apiUrl);
     // Obtengo los tags y los paso al estado para que re-renderice el panel de busquedas
     const { getTags } = NodepopAPI(session.apiUrl);
     getTags().then(res => this.setState({ tags: res }));
     // Obtengo los anuncios
-    this.getAdverts();
+    this.setState({
+      error: false,
+      loading: false,
+      currentPage: 0,
+      numPages: 10,
+    });
   }
 
   /**
