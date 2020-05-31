@@ -1,11 +1,11 @@
 import * as TYPES from './types';
 import Session from '../models/Session';
+import LocalStorage from '../utils/Storage';
 
 export const initialState = {
-    session: new Session(),
+    session: LocalStorage.readLocalStorage() || new Session(),
     adverts: [],
 }
-
 
 export function session (state = initialState.session, action) {
     switch (action.type) {

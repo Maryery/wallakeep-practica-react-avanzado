@@ -355,18 +355,19 @@ class AdvertEdit extends Component {
    * Manejador del submit del formulario
    */
   handleSubmit = ev => {
-    const { session, enqueueSnackbar, history, createAd } = this.props;
+    const { session, enqueueSnackbar, history, createAd, editAd } = this.props;
     ev.preventDefault();
-    const { postAdvert, editAdvert } = NodepopAPI(session.apiUrl);
+    //const { postAdvert, editAdvert } = NodepopAPI(session.apiUrl);
     // Creo un anuncio con los datos del estado si es válido
     const advert = new Advert(this.state.advert);
     if (advert.isValid()) {
       if (this.isEditMode()) {
         // PUT
-        editAdvert(advert, session.apiUrl, history);
+        editAd(advert, session.apiUrl, history, enqueueSnackbar);
+
       } else {
         // POST
-        createAd(advert, session.apiUrl, history);
+        createAd(advert, session.apiUrl, history, enqueueSnackbar);
       }
     } else {
       // El anuncio no es completo. Error

@@ -8,30 +8,15 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { UserProvider } from '../../context/UserContext';
 import AdvertDetail from '../AdvertDetail/AdvertDetail';
 import AdvertEdit from '../AdvertEdit/AdvertEdit';
-import LocalStorage from '../../utils/Storage';
 import Error404 from '../Error404/Error404';
 import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
-import Session from '../../models/Session';
 import VisibleHome from '../../containers/VisibleHome/index';
-
 
 /**
  * Main App
  */
 export default class App extends Component {
-  /**
-   * Constructor
-   * @param {*} props
-   */
-  constructor(props) {
-    super(props);
-    this.state = {
-      // Intento recuperar la sesión del storage
-      session: LocalStorage.readLocalStorage() || new Session(),
-    };
-  }
-  
   /**
    * Render
    */

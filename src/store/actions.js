@@ -44,7 +44,7 @@ export const editAdvertSuccess = advert => ({
     advert,
 });
 
-export const editAdvert = (advert, apiUrl, history) => {   
+export const editAdvert = (advert, apiUrl, history, snack) => {   
     return async function(dispatch, getState) {
         dispatch(editAdvertRequest());
         try {
@@ -52,13 +52,19 @@ export const editAdvert = (advert, apiUrl, history) => {
             console.log(response)
             history.push(`/advert/${response['_id']}`)
             dispatch(editAdvertSuccess(response));
+            snack('ok, anuncio guardado', {
+                variant: 'success',
+              });
         } catch (error) {
             dispatch(editAdvertFailure(error.message))
+            snack(error.message, {
+                variant: 'error',
+              });
         }
     }
 };
 
-export const createAdvert = (advert, apiUrl, history) => {   
+export const createAdvert = (advert, apiUrl, history,) => {   
     return async function(dispatch, getState) {
         delete advert._id;
         dispatch(createAdvertRequest());
@@ -67,8 +73,14 @@ export const createAdvert = (advert, apiUrl, history) => {
             console.log(response)
             history.push(`/advert/${response['_id']}`)
             dispatch(createAdvertSuccess(response));
+            snack('ok, anuncio creado', {
+                variant: 'success',
+              });
         } catch (error) {
             dispatch(createAdvertFailure(error.message));
+            snack(error.message, {
+                variant: 'error',
+              });
         }
     }
 };

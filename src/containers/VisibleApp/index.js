@@ -18,14 +18,16 @@ const mapDispatchToProps = dispatch => ({
   },
   logout: () => {
     dispatch(logout);
+    LocalStorage.clearLocalStorage();
+
   },
-  createAd: (advert, apiUrl, history) => {
+  createAd: (advert, apiUrl, history, snack) => {
     console.log(advert)
-    dispatch(createAdvert(advert, apiUrl, history));
+    dispatch(createAdvert(advert, apiUrl, history, snack));
   },
-  editAd: (advert, apiUrl, history) => {
+  editAd: (advert, apiUrl, history, snack) => {
     console.log(advert)
-    dispatch(editAdvert(advert, apiUrl, history));
+    dispatch(editAdvert(advert, apiUrl, history, snack));
   }
 });
 
