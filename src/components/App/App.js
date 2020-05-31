@@ -50,11 +50,11 @@ export default class App extends Component {
               <PrivateRoute path="/profile" exact component={Profile} />
               <PrivateRoute path="/advert/create" 
               exact 
-              render={(props) => <AdvertEdit ad= {this.props.ad} {...props}/>} />
+              render={(props) => <AdvertEdit createAd= {this.props.createAd} {...props}/>} />
               <PrivateRoute
                 path="/advert/:id/edit"
                 exact
-                component={AdvertEdit}
+                render={(props) => <AdvertEdit editAd= {this.props.editAd} {...props}/>} />
               />
               <PrivateRoute path="/advert/:id" exact component={AdvertDetail} />
               <PrivateRoute path="/" exact render={(props) => <VisibleHome logout= {this.props.logout} {...props}/>} />

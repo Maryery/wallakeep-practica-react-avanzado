@@ -19,10 +19,14 @@ const mapDispatchToProps = dispatch => ({
   logout: () => {
     dispatch(logout);
   },
-  ad: (advert) => {
-    dispatch(createAdvert(advert));
-    dispatch(editAdvert(advert))
-  } 
+  createAd: (advert, apiUrl, history) => {
+    console.log(advert)
+    dispatch(createAdvert(advert, apiUrl, history));
+  },
+  editAd: (advert, apiUrl, history) => {
+    console.log(advert)
+    dispatch(editAdvert(advert, apiUrl, history));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

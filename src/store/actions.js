@@ -44,11 +44,13 @@ export const editAdvertSuccess = advert => ({
     advert,
 });
 
-export const editAdvert = (advert) => {   
+export const editAdvert = (advert, apiUrl, history) => {   
     return async function(dispatch, getState) {
         dispatch(editAdvertRequest());
         try {
-            const response = await NodepopAPI.editAdvert(advert);
+            const response = await NodepopAPI(apiUrl).editAdvert(advert);
+            console.log(response)
+            history.push(`/advert/${response['_id']}`)
             dispatch(editAdvertSuccess(response));
         } catch (error) {
             dispatch(editAdvertFailure(error.message))
@@ -56,12 +58,14 @@ export const editAdvert = (advert) => {
     }
 };
 
-export const createAdvert = (advert) => {   
+export const createAdvert = (advert, apiUrl, history) => {   
     return async function(dispatch, getState) {
         delete advert._id;
         dispatch(createAdvertRequest());
         try {
-            const response = await NodepopAPI.postAdvert(advert);
+            const response = await NodepopAPI(apiUrl).postAdvert(advert);
+            console.log(response)
+            history.push(`/advert/${response['_id']}`)
             dispatch(createAdvertSuccess(response));
         } catch (error) {
             dispatch(createAdvertFailure(error.message));

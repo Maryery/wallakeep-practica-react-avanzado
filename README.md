@@ -1,4 +1,4 @@
-# Practica del módulo de fundamentos react
+# Practica del módulo de react avanzado
 Wallakeep - React Frontend for the Nodepop API (https://github.com/IsmaelB83/keepcoding-backend-node)
 
 ### Contents
