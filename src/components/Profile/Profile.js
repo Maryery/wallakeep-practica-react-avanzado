@@ -41,7 +41,6 @@ class Profile extends Component {
    */
   render() {
     const { name, surname, maxAdverts } = this.state;
-    console.log(this.props.logout)
     return (
       <Layout logout={this.props.logout} sectionTitle="Perfil de usuario">
         <form

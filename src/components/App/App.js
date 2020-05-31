@@ -13,7 +13,7 @@ import Error404 from '../Error404/Error404';
 import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Session from '../../models/Session';
-import VisibleHome from '../../containers/VisibleHome';
+import VisibleHome from '../../containers/VisibleHome/index';
 
 
 /**
@@ -48,11 +48,9 @@ export default class App extends Component {
             <Switch>
               <Route path="/register" exact render={(props) => <Register session= {this.props.session} login={this.props.login} {...props}/>} />
               <PrivateRoute path="/profile" exact component={Profile} />
-              <PrivateRoute
-                path="/advert/create"
-                exact
-                component={AdvertEdit}
-              />
+              <PrivateRoute path="/advert/create" 
+              exact 
+              render={(props) => <AdvertEdit ad= {this.props.ad} {...props}/>} />
               <PrivateRoute
                 path="/advert/:id/edit"
                 exact

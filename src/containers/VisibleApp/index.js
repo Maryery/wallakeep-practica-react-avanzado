@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import App from '../../components/App/App';
-import { setSession, logout } from '../../store/actions';
+import { setSession, logout, createAdvert, editAdvert } from '../../store/actions';
 import LocalStorage from '../../utils/Storage';
 
 
@@ -13,12 +13,15 @@ const mapDispatchToProps = dispatch => ({
     if (isRemember) {
       LocalStorage.saveLocalStorage(session);
     }
-    console.log(session)
     dispatch(setSession(session));
     dispatch(cb);
   },
   logout: () => {
     dispatch(logout);
+  },
+  ad: (advert) => {
+    dispatch(createAdvert(advert));
+    dispatch(editAdvert(advert))
   } 
 });
 
