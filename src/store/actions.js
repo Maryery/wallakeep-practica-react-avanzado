@@ -64,7 +64,7 @@ export const editAdvert = (advert, apiUrl, history, snack) => {
     }
 };
 
-export const createAdvert = (advert, apiUrl, history,) => {   
+export const createAdvert = (advert, apiUrl, history, snack) => {   
     return async function(dispatch, getState) {
         delete advert._id;
         dispatch(createAdvertRequest());
